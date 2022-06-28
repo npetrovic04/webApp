@@ -1,0 +1,44 @@
+query MyQuery {
+  categoryList(filters: {category_uid: {eq: "MjY0Mg=="}}) {
+    uid
+    name
+    children {
+      image
+      uid
+      name
+      description
+      children {
+        uid
+        image
+        name
+        description
+        children {
+          image
+          uid
+          name
+          description
+          children {
+            uid
+            image
+            name
+            description
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetCategoryProducts($categoryId: String, $pageSize: Int) {
+    products(pageSize: $pageSize, currentPage: 1, filter: {category_uid: {eq: $categoryId}}) {
+          items {
+            id
+            name
+            sku
+            image {
+              url
+            }
+        }
+    }
+}
+
